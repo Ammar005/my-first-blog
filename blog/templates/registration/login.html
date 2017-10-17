@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #555555;
+
+        }
+    </style>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <style>
+            table, td, th {
+
+            }
+
+            table {
+
+                width: 50%;
+            }
+
+            th {
+
+                height: 50px;
+            }
+
+            td {
+                 background-color: #555555;
+                    color: white;
+                    text-align: right;
+                    width: 100%;
+                height: 50px;
+            }
+
+        </style>
+
+        <table>
+
+
+            <tr>
+
+                <td> {{form.username.label_tag}}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+<style>
+	input[type=submit]{
+      background-color: navy;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 1px 240px;
+      cursor: pointer;
+        font-family: Impact;
+}
+</style>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+{% endblock %}
