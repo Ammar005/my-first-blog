@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 import json
 from watson_developer_cloud import ToneAnalyzerV3
 from watson_developer_cloud import LanguageTranslatorV2 as LanguageTranslator
-from django.contrib.auth.decorators import login_required
+
 
 
 def post_list(request):
@@ -49,7 +49,7 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
-@login_required
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -63,7 +63,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
-@login_required
+
 def post_edit(request, pk):
    post = get_object_or_404(Post, pk=pk)
    if request.method == "POST":
